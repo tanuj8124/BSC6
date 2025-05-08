@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sudoku Solver</title>
+  <style>
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(9, 40px);
+      gap: 2px;
+      margin-bottom: 10px;
+    }
+    .cell {
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      font-size: 16px;
+    }
+    button {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Sudoku Solver</h2>
+  <div class="grid" id="sudoku-grid"></div>
+  <button onclick="solve()">Solve</button>
+  <button onclick="clearGrid()">Clear</button>
+
+  <script>
+    const gridElement = document.getElementById("sudoku-grid");
+    const grid = [];
+
+    for (let row = 0; row < 9; row++) {
+      grid[row] = [];
+      for (let col = 0; col < 9; col++) {
+        const input = document.createElement("input");
+        input.type = "text";
+        input.maxLength = 1;
+        input.className = "cell";
+        grid[row][col] = input;
+        gridElement.appendChild(input);
+      }
+    }
+
+    function getBoard() {
+      return grid.map(row => row.map(cell => {
+        const val = cell.value;
+        return val >= '1' && val <= '9' ? parseInt(val) : 0;
+      }));
+    }
+
+    function setBoard(board) {
+      for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+          grid[i][j].value = board[i][j] === 0 ? '' : board[i][j];
+        }
+      }
+    }
+
+    function isValid(board, row, col, num) {
+      for (let i = 0; i < 9; i++) {
+        if (board[row][i] === num || board[i][col] === num) return false;
+        const boxRow = 3 * Math.floor(row / 3) + Math.floor(i / 3);
+        const boxCol = 3 * Math.floor(col / 3) + i % 3;
+        if (board[boxRow][boxCol] === num) return false;
+      }
+      return true;
+    }
+
+    function solveBoard(board) {
+      for (let row = 0; row < 9; row++) {
+        for (let col = 0; col < 9; col++) {
+          if (board[row][col] === 0) {
+            for (let num = 1; num <= 9; num++) {
+              if (isValid(board, row, col, num)) {
+                board[row][col] = num;
+                if (solveBoard(board)) return true;
+                board[row][col] = 0;
+              }
+            }
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+
+    function solve() {
+      const board = getBoard();
+      if (solveBoard(board)) {
+        setBoard(board);
+      } else {
+        alert("No solution found.");
+      }
+    }
+
+    function clearGrid() {
+      grid.forEach(row => row.forEach(cell => cell.value = ""));
+    }
+  </script>
+</body>
+</html>
