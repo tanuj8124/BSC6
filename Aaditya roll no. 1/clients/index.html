@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourismo - Explore Chhattisgarh</title>
+    <meta name="description" content="Discover the beauty of Chhattisgarh with our tourism services">
+    <!-- Favicon -->
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Tourismo</h1>
+                <p>Chhattisgarh Tourism</p>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#packages">Packages</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Slider -->
+    <section class="hero">
+        <div class="swiper hero-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide slide-1">
+                    <div class="hero-content">
+                        <h2>Discover Chhattisgarh</h2>
+                        <p>Explore waterfalls, wildlife, and rich tribal culture</p>
+                        <a href="#destinations" class="btn">Explore Now</a>
+                    </div>
+                </div>
+                <div class="swiper-slide slide-2">
+                    <div class="hero-content">
+                        <h2>Majestic Waterfalls</h2>
+                        <p>Visit the Niagara of India - Chitrakote Falls</p>
+                        <a href="#destinations" class="btn">View Destinations</a>
+                    </div>
+                </div>
+                <div class="swiper-slide slide-3">
+                    <div class="hero-content">
+                        <h2>Wildlife Adventures</h2>
+                        <p>Explore the rich biodiversity of Barnawapara</p>
+                        <a href="#destinations" class="btn">Book a Tour</a>
+                    </div>
+                </div>
+                 
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+    <!-- Replace your existing search section with this: -->
+    <!-- Replace your existing search section with this: -->
+<section class="search-section">
+    <div class="container">
+        <h2>Plan Your Trip</h2>
+        <form id="searchForm" class="search-form">
+            <div class="form-group">
+                <label for="destinationSearch">Destination</label>
+                <input type="text" id="destinationSearch" placeholder="Where do you want to go?" required>
+                <div class="suggestions"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="travelDate">Travel Date</label>
+                <input type="date" id="travelDate">
+            </div>
+            
+            <div class="form-group">
+                <label for="travelType">Trip Type</label>
+                <select id="travelType">
+                    <option value="leisure">Leisure</option>
+                    <option value="adventure">Adventure</option>
+                    <option value="family">Family</option>
+                    <option value="solo">Solo</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn">Search</button>
+        </form>
+        
+        <!-- Transport results will appear here -->
+        <div class="search-results-container"></div>
+    </div>
+</section>
+    <!-- Destinations -->
+    <section id="destinations" class="destinations">
+        <div class="container">
+            <div class="section-header">
+                <h2>Popular Destinations</h2>
+                <p>Explore the most beautiful places in Chhattisgarh</p>
+            </div>
+            <div class="swiper destinations-slider">
+                <div class="swiper-wrapper">
+                    <!-- Destination cards will be loaded dynamically -->
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages -->
+    <section id="packages" class="packages">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tour Packages</h2>
+                <p>Curated experiences for every traveler</p>
+            </div>
+            <div class="package-grid">
+                <!-- Packages will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Raipur, Chhattisgarh</p>
+                    <p><i class="fas fa-phone"></i> +91 01125532553</p>
+                    <p><i class="fas fa-envelope"></i> info@tourismocg.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Your Phone">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Tourismo</h4>
+                    <p>Your gateway to exploring the hidden gems of Chhattisgarh.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#destinations">Destinations</a></li>
+                        <li><a href="#packages">Packages</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Tourismo Chhattisgarh. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>

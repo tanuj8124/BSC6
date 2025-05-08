@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chhattisgarhi Translator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+         button {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen flex flex-col">
+    <nav class="bg-gray-900 text-white p-4 flex justify-between items-center shadow-md">
+        <div class="flex items-center">
+            <img src="logo.png" alt="GGU Logo" class="h-10 mr-3 animate-pulse">
+            <span class="text-lg font-semibold">Gautam's Translator</span>
+        </div>
+    </nav>
+    <div class="flex items-center justify-center flex-grow p-4">
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-2xl text-center">
+            <h2 class="text-2xl font-semibold mb-4 animate-fade-in">Chhattisgarhi to English Translator</h2>
+            <textarea id="inputText" placeholder="Enter Chhattisgarhi text..." class="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-700 text-white"></textarea>
+            <div class="mt-4 flex flex-col sm:flex-row justify-between gap-2">
+                <button onclick="translateText()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 w-full sm:w-auto">To English</button>
+                <button onclick="engText()" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 w-full sm:w-auto">To Chhattisgarhi</button>
+            </div>
+            <p id="result" class="mt-4 text-lg font-medium text-gray-300"></p>
+        </div>
+    </div>
+    <script>
+        async function translateText() {
+            const text = document.getElementById("inputText").value;
+            if (!text) {
+                alert("Please enter text to translate.");
+                return;
+            }
+            
+            const response = await fetch("http://localhost:3000/translate", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text })
+            });
+            
+            const data = await response.json();
+            typeWriterEffect(data.translation, "result");
+        }
+
+        async function engText() {
+            const text = document.getElementById("inputText").value;
+            if (!text) {
+                alert("Please enter text to translate.");
+                return;
+            }
+            
+            const response = await fetch("http://localhost:3000/eng", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text })
+            });
+            
+            const data = await response.json();
+            
+            document.getElementById("result").innerText = data.translation || "Translation failed";
+        }
+        function typeWriterEffect(text, elementId) {
+            let i = 0;
+            document.getElementById(elementId).innerHTML = "";
+            function type() {
+                if (i < text.length) {
+                    document.getElementById(elementId).innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, 50);
+                }
+            }
+            type();
+        }
+    </script>
+</body>
+</html>

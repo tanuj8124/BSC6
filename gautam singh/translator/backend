@@ -1,0 +1,441 @@
+import express from "express";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import cors from "cors";
+
+
+const app = express();
+const port = 3000;
+const genAI = new GoogleGenerativeAI('AIzaSyDkOFUtzh-3nkbkvx0Masir7OuEirnD8BQ');
+app.use(cors());
+app.use(express.json());
+
+app.post("/translate", async (req, res) => {
+  try {
+    const { text } = req.body;
+    if (!text) return res.status(400).json({ error: "Text is required" });
+    
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const prompt = `you are a chttisgrhi to eng translator use refference Aabe – Come
+
+Jaa – Go
+
+mor - me
+
+Kha – Eat
+
+Pee – Drink
+
+Suta – Sleep
+
+Uth – Wake up
+
+Dekh – See
+
+Sun – Listen
+
+Kaam – Work
+
+Ghar – Home
+
+Bahan – Sister
+
+Bhai – Brother
+
+Ma – Mother
+
+Bapu – Father
+
+Didi – Elder sister
+
+Chacha – Uncle
+
+Kaka – Uncle (father’s brother)
+
+Dai – mother
+
+Laika – Child
+
+Jawan – Young
+
+Budha – Old
+
+Pani – Water
+
+Bhaat – Rice
+
+Daal – Lentils
+
+Sabji – Vegetable
+
+Roti – Bread
+
+Masala – Spice
+
+Chini – Sugar
+
+Namak – Salt
+
+Mirch – Chili
+
+Thanda – Cold
+
+Garam – Hot
+
+Barish – Rain
+
+Dhoop – Sunshine
+
+Hawa – Wind
+
+Zameen – Land
+
+Jungle – Forest
+
+Nadi – River
+
+Pahad – Hill
+
+Gaon – Village
+
+Nagar – City
+
+School – School
+
+Aspatal – Hospital
+
+Bajar – Market
+
+Mandir – Temple
+
+Dharam – Religion
+
+Bhasha – Language
+
+Kitaab – Book
+
+Kalam – Pen
+
+Kursi – Chair
+
+Mej – Table
+
+Kapda – Cloth
+
+Joota – Shoe
+
+Topi – Cap
+
+Rang – Color
+
+Kala – Black
+
+Safed – White
+
+Lal – Red
+
+Hara – Green
+
+Neela – Blue
+
+Pyara – Lovely
+
+Sundar – Beautiful
+
+Bura – Bad
+
+Accha – Good
+
+Thik – Okay
+
+Nahi – No
+
+Haan – Yes
+
+Kauno – Someone
+
+Kaha – Where
+
+Kaise – How
+
+Kab – When
+
+Kaa – What
+
+Koni – Not
+
+Ab – Now
+
+Kal – Tomorrow/Yesterday
+
+Aaj – Today
+
+Subah – Morning
+
+Shaam – Evening
+
+Raat – Night
+
+Din – Day
+
+Jaldi – Quickly
+
+Dheere – Slowly
+
+Bahut – Very
+
+Thoda – Little
+
+Sab – All
+
+Koi – Anyone
+
+Chalo – Let’s go
+
+Ruko – Wait
+
+Lao – Bring
+
+Do – Give
+
+Le – Take
+
+Bol – Speak
+
+Hasso – Laugh
+
+Raho – Stay
+
+Jaane – To go
+
+Kar – Do
+
+Reh – Stay
+
+Dard – Pain
+
+Sukh – Happiness
+
+Dukkh – Sadness plus your own knowledge Translate the following Chhattisgarhi text to English: "${text}" dont explain anyything just return the translated response`;
+    const result = await model.generateContent(prompt);
+    
+    res.json({ translation: result.response.text() });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post("/eng", async (req, res) => {
+    try {
+      const { text } = req.body;
+      if (!text) return res.status(400).json({ error: "Text is required" });
+      
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const prompt = `you are a english to chhtisgarhi translator use refference Aabe – Come
+
+Jaa – Go
+
+mor - me
+Kha – Eat
+
+Pee – Drink
+
+Suta – Sleep
+
+Uth – Wake up
+
+Dekh – See
+
+Sun – Listen
+
+Kaam – Work
+
+Ghar – Home
+
+Bahan – Sister
+
+Bhai – Brother
+
+Ma – Mother
+
+Bapu – Father
+
+Didi – Elder sister
+
+Chacha – Uncle
+
+Kaka – Uncle (father’s brother)
+
+Dai – mother
+
+Laika – Child
+
+Jawan – Young
+
+Budha – Old
+
+Pani – Water
+
+Bhaat – Rice
+
+Daal – Lentils
+
+Sabji – Vegetable
+
+Roti – Bread
+
+Masala – Spice
+
+Chini – Sugar
+
+Namak – Salt
+
+Mirch – Chili
+
+Thanda – Cold
+
+Garam – Hot
+
+Barish – Rain
+
+Dhoop – Sunshine
+
+Hawa – Wind
+
+Zameen – Land
+
+Jungle – Forest
+
+Nadi – River
+
+Pahad – Hill
+
+Gaon – Village
+
+Nagar – City
+
+School – School
+
+Aspatal – Hospital
+
+Bajar – Market
+
+Mandir – Temple
+
+Dharam – Religion
+
+Bhasha – Language
+
+Kitaab – Book
+
+Kalam – Pen
+
+Kursi – Chair
+
+Mej – Table
+
+Kapda – Cloth
+
+Joota – Shoe
+
+Topi – Cap
+
+Rang – Color
+
+Kala – Black
+
+Safed – White
+
+Lal – Red
+
+Hara – Green
+
+Neela – Blue
+
+Pyara – Lovely
+
+Sundar – Beautiful
+
+Bura – Bad
+
+Accha – Good
+
+Thik – Okay
+
+Nahi – No
+
+Haan – Yes
+
+Kauno – Someone
+
+Kaha – Where
+
+Kaise – How
+
+Kab – When
+
+Kaa – What
+
+Koni – Not
+
+Ab – Now
+
+Kal – Tomorrow/Yesterday
+
+Aaj – Today
+
+Subah – Morning
+
+Shaam – Evening
+
+Raat – Night
+
+Din – Day
+
+Jaldi – Quickly
+
+Dheere – Slowly
+
+Bahut – Very
+
+Thoda – Little
+
+Sab – All
+
+Koi – Anyone
+
+Chalo – Let’s go
+
+Ruko – Wait
+
+Lao – Bring
+
+Do – Give
+
+Le – Take
+
+Bol – Speak
+
+Hasso – Laugh
+
+Raho – Stay
+
+Jaane – To go
+
+Kar – Do
+
+Reh – Stay
+
+Dard – Pain
+
+Sukh – Happiness
+
+Dukkh – Sadness plus your own knowledge then Translate the following english text to chhattisgarhi : "${text}" dont explain anyything just return the translated response`;
+      const result = await model.generateContent(prompt);
+      
+      res.json({ translation: result.response.text() });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+app.listen(port, () => console.log(`Server running on port ${port}`));

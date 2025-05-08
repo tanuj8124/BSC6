@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}LLM Generic App{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <main>
+        {% block content %}
+        <!-- Page content will be injected here -->
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2025 LLM Generic App. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+

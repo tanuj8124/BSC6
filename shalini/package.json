@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "jupyterlab": "^0.17.2",
+    "numpy": "^0.0.1",
+    "pandas": "^0.0.3",
+    "scikit-learn": "^0.1.0",
+    "sklearn": "^1.0.0"
+  }
+}

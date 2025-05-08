@@ -1,0 +1,9 @@
+django
+djangorestframework
+sentence-transformers
+langchain-community
+faiss-cpu
+numpy
+pinecone-client
+python-dotenv
+google-generativeai
